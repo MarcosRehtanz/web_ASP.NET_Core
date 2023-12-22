@@ -27,11 +27,17 @@ namespace ContosoPizza.Pages
 
         public IActionResult OnPost()
         {
-            if(!ModelState.IsValid || NewPizza == null)
+            if (!ModelState.IsValid || NewPizza == null)
             {
                 return Page();
             }
             _service.AddPizza(NewPizza);
+            return RedirectToAction("Get");
+        }
+
+        public IActionResult OnPostDelete(int id)
+        {
+            _service.DeletePizza(id);
             return RedirectToAction("Get");
         }
 
